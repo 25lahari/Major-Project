@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Execute Models</title>
+</head>
+<body>
+    <h1>Execute a Model</h1>
+    <button onclick="runFile('RandomForest.py')">Run Random Forest</button>
+    <button onclick="runFile('SequentialModel.py')">Run Sequential Model</button>
+    <button onclick="runFile('XGBoostModel.py')">Run XGBoost Model</button>
+
+    <script>
+        function runFile(fileName) {
+            fetch(`run_file/${fileName}`, { method: "POST" })
+                .then(response => {
+                    if (response.ok) {
+                        alert(`${fileName} executed successfully.`);
+                    } else {
+                        alert(`Error executing ${fileName}.`);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
